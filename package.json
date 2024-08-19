@@ -1,16 +1,16 @@
 {
   "name": "tree-sitter-skhd",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "bindings/node",
   "types": "bindings/node",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "node-gyp-build",
     "prebuildify": "prebuildify --napi --strip"
   },
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "author": "reo101 <pavel.atanasov2001@gmail.com>",
+  "license": "MIT",
+  "description": "A tree-sitter grammar for skhdrc",
   "dependencies": {
     "node-addon-api": "^7.1.0",
     "node-gyp-build": "^4.8.0"
