@@ -7,12 +7,15 @@ vim.api.nvim_create_autocmd("FileType", {
 
 local ok, parsers = pcall(require, "nvim-treesitter.parsers")
 if ok then
-  parsers.get_parser_configs().skhdrc = {
-    install_info = {
-      url = "https://github.com/reo101/tree-sitter-skhdrc",
-      files = { "src/parser.c" },
-      branch = "main",
-    },
-    filetype = "skhdrc",
-  }
+  local parser_configs = parsers.get_parser_configs()
+  if not parser_configs.skhdrc then
+    parser_config.skhdrc = {
+      install_info = {
+        url = "https://github.com/reo101/tree-sitter-skhdrc",
+        files = { "src/parser.c" },
+        branch = "main",
+      },
+      filetype = "skhdrc",
+    }
+  end
 end
