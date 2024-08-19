@@ -17,6 +17,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "_macro"
+        },
+        {
+          "type": "SYMBOL",
           "name": "hotkey"
         },
         {
@@ -29,6 +33,69 @@
       "type": "PATTERN",
       "value": "\\#[^\\n]*"
     },
+    "_macro": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "load"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "blacklist"
+        }
+      ]
+    },
+    "load": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ".load"
+        },
+        {
+          "type": "FIELD",
+          "name": "path",
+          "content": {
+            "type": "SYMBOL",
+            "name": "string"
+          }
+        }
+      ]
+    },
+    "blacklist": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ".blacklist"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "["
+            },
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "FIELD",
+                "name": "item",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "string"
+                }
+              }
+            },
+            {
+              "type": "STRING",
+              "value": "]"
+            }
+          ]
+        }
+      ]
+    },
     "hotkey": {
       "type": "CHOICE",
       "members": [
@@ -37,7 +104,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "mode"
+              "name": "modes"
             },
             {
               "type": "STRING",
@@ -55,35 +122,33 @@
         }
       ]
     },
-    "mode": {
-      "type": "PREC_LEFT",
-      "value": 0,
+    "modes": {
+      "type": "REPEAT1",
       "content": {
-        "type": "CHOICE",
+        "type": "SEQ",
         "members": [
           {
             "type": "SYMBOL",
-            "name": "name"
+            "name": "mode"
           },
           {
-            "type": "SEQ",
+            "type": "CHOICE",
             "members": [
-              {
-                "type": "SYMBOL",
-                "name": "mode"
-              },
               {
                 "type": "STRING",
                 "value": ","
               },
               {
-                "type": "SYMBOL",
-                "name": "mode"
+                "type": "BLANK"
               }
             ]
           }
         ]
       }
+    },
+    "mode": {
+      "type": "PATTERN",
+      "value": "\\w+"
     },
     "action": {
       "type": "CHOICE",
@@ -283,11 +348,206 @@
     },
     "literal": {
       "type": "PATTERN",
-      "value": "[a-zA-Z0-9]+"
+      "value": "[A-Z0-9]",
+      "flags": "i"
     },
     "keycode": {
-      "type": "PATTERN",
-      "value": "kVK_\\w+"
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "0x[0-9A-F]{2}",
+          "flags": "i"
+        },
+        {
+          "type": "STRING",
+          "value": "return"
+        },
+        {
+          "type": "STRING",
+          "value": "tab"
+        },
+        {
+          "type": "STRING",
+          "value": "space"
+        },
+        {
+          "type": "STRING",
+          "value": "backspace"
+        },
+        {
+          "type": "STRING",
+          "value": "escape"
+        },
+        {
+          "type": "STRING",
+          "value": "delete"
+        },
+        {
+          "type": "STRING",
+          "value": "home"
+        },
+        {
+          "type": "STRING",
+          "value": "end"
+        },
+        {
+          "type": "STRING",
+          "value": "pageup"
+        },
+        {
+          "type": "STRING",
+          "value": "pagedown"
+        },
+        {
+          "type": "STRING",
+          "value": "insert"
+        },
+        {
+          "type": "STRING",
+          "value": "left"
+        },
+        {
+          "type": "STRING",
+          "value": "right"
+        },
+        {
+          "type": "STRING",
+          "value": "up"
+        },
+        {
+          "type": "STRING",
+          "value": "down"
+        },
+        {
+          "type": "STRING",
+          "value": "f1"
+        },
+        {
+          "type": "STRING",
+          "value": "f2"
+        },
+        {
+          "type": "STRING",
+          "value": "f3"
+        },
+        {
+          "type": "STRING",
+          "value": "f4"
+        },
+        {
+          "type": "STRING",
+          "value": "f5"
+        },
+        {
+          "type": "STRING",
+          "value": "f6"
+        },
+        {
+          "type": "STRING",
+          "value": "f7"
+        },
+        {
+          "type": "STRING",
+          "value": "f8"
+        },
+        {
+          "type": "STRING",
+          "value": "f9"
+        },
+        {
+          "type": "STRING",
+          "value": "f10"
+        },
+        {
+          "type": "STRING",
+          "value": "f11"
+        },
+        {
+          "type": "STRING",
+          "value": "f12"
+        },
+        {
+          "type": "STRING",
+          "value": "f13"
+        },
+        {
+          "type": "STRING",
+          "value": "f14"
+        },
+        {
+          "type": "STRING",
+          "value": "f15"
+        },
+        {
+          "type": "STRING",
+          "value": "f16"
+        },
+        {
+          "type": "STRING",
+          "value": "f17"
+        },
+        {
+          "type": "STRING",
+          "value": "f18"
+        },
+        {
+          "type": "STRING",
+          "value": "f19"
+        },
+        {
+          "type": "STRING",
+          "value": "f20"
+        },
+        {
+          "type": "STRING",
+          "value": "sound_up"
+        },
+        {
+          "type": "STRING",
+          "value": "sound_down"
+        },
+        {
+          "type": "STRING",
+          "value": "mute"
+        },
+        {
+          "type": "STRING",
+          "value": "play"
+        },
+        {
+          "type": "STRING",
+          "value": "previous"
+        },
+        {
+          "type": "STRING",
+          "value": "next"
+        },
+        {
+          "type": "STRING",
+          "value": "rewind"
+        },
+        {
+          "type": "STRING",
+          "value": "fast"
+        },
+        {
+          "type": "STRING",
+          "value": "brightness_up"
+        },
+        {
+          "type": "STRING",
+          "value": "brightness_down"
+        },
+        {
+          "type": "STRING",
+          "value": "illumination_up"
+        },
+        {
+          "type": "STRING",
+          "value": "illumination_down"
+        }
+      ]
     },
     "proc_map_lst": {
       "type": "SEQ",
@@ -427,7 +687,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "name"
+              "name": "mode"
             },
             {
               "type": "STRING",
@@ -452,7 +712,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "name"
+              "name": "mode"
             },
             {
               "type": "STRING",
@@ -473,7 +733,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "name"
+              "name": "mode"
             },
             {
               "type": "STRING",
@@ -490,22 +750,42 @@
             },
             {
               "type": "SYMBOL",
-              "name": "name"
+              "name": "mode"
             }
           ]
         }
       ]
-    },
-    "name": {
-      "type": "PATTERN",
-      "value": "\\w+"
     },
     "modifier_keyword": {
       "type": "CHOICE",
       "members": [
         {
           "type": "STRING",
+          "value": "fn"
+        },
+        {
+          "type": "STRING",
           "value": "cmd"
+        },
+        {
+          "type": "STRING",
+          "value": "lcmd"
+        },
+        {
+          "type": "STRING",
+          "value": "rcmd"
+        },
+        {
+          "type": "STRING",
+          "value": "shift"
+        },
+        {
+          "type": "STRING",
+          "value": "lshift"
+        },
+        {
+          "type": "STRING",
+          "value": "rshift"
         },
         {
           "type": "STRING",
@@ -513,7 +793,11 @@
         },
         {
           "type": "STRING",
-          "value": "shift"
+          "value": "lalt"
+        },
+        {
+          "type": "STRING",
+          "value": "ralt"
         },
         {
           "type": "STRING",
@@ -525,11 +809,15 @@
         },
         {
           "type": "STRING",
-          "value": "lalt"
+          "value": "rctrl"
         },
         {
           "type": "STRING",
-          "value": "lshift"
+          "value": "hyper"
+        },
+        {
+          "type": "STRING",
+          "value": "meh"
         }
       ]
     }

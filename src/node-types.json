@@ -27,6 +27,22 @@
     }
   },
   {
+    "type": "blacklist",
+    "named": true,
+    "fields": {
+      "item": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "command",
     "named": true,
     "fields": {}
@@ -44,7 +60,7 @@
           "named": true
         },
         {
-          "type": "mode",
+          "type": "modes",
           "named": true
         }
       ]
@@ -70,6 +86,11 @@
     }
   },
   {
+    "type": "keycode",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "keysym",
     "named": true,
     "fields": {},
@@ -86,6 +107,22 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "load",
+    "named": true,
+    "fields": {
+      "path": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -108,25 +145,6 @@
     }
   },
   {
-    "type": "mode",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "mode",
-          "named": true
-        },
-        {
-          "type": "name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "mode_decl",
     "named": true,
     "fields": {},
@@ -139,7 +157,22 @@
           "named": true
         },
         {
-          "type": "name",
+          "type": "mode",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "modes",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "mode",
           "named": true
         }
       ]
@@ -193,11 +226,19 @@
       "required": false,
       "types": [
         {
+          "type": "blacklist",
+          "named": true
+        },
+        {
           "type": "comment",
           "named": true
         },
         {
           "type": "hotkey",
+          "named": true
+        },
+        {
+          "type": "load",
           "named": true
         },
         {
@@ -229,6 +270,14 @@
   },
   {
     "type": "->",
+    "named": false
+  },
+  {
+    "type": ".blacklist",
+    "named": false
+  },
+  {
+    "type": ".load",
     "named": false
   },
   {
@@ -264,6 +313,18 @@
     "named": false
   },
   {
+    "type": "backspace",
+    "named": false
+  },
+  {
+    "type": "brightness_down",
+    "named": false
+  },
+  {
+    "type": "brightness_up",
+    "named": false
+  },
+  {
     "type": "cmd",
     "named": false
   },
@@ -276,15 +337,143 @@
     "named": false
   },
   {
-    "type": "keycode",
-    "named": true
+    "type": "delete",
+    "named": false
+  },
+  {
+    "type": "down",
+    "named": false
+  },
+  {
+    "type": "end",
+    "named": false
+  },
+  {
+    "type": "escape",
+    "named": false
+  },
+  {
+    "type": "f1",
+    "named": false
+  },
+  {
+    "type": "f10",
+    "named": false
+  },
+  {
+    "type": "f11",
+    "named": false
+  },
+  {
+    "type": "f12",
+    "named": false
+  },
+  {
+    "type": "f13",
+    "named": false
+  },
+  {
+    "type": "f14",
+    "named": false
+  },
+  {
+    "type": "f15",
+    "named": false
+  },
+  {
+    "type": "f16",
+    "named": false
+  },
+  {
+    "type": "f17",
+    "named": false
+  },
+  {
+    "type": "f18",
+    "named": false
+  },
+  {
+    "type": "f19",
+    "named": false
+  },
+  {
+    "type": "f2",
+    "named": false
+  },
+  {
+    "type": "f20",
+    "named": false
+  },
+  {
+    "type": "f3",
+    "named": false
+  },
+  {
+    "type": "f4",
+    "named": false
+  },
+  {
+    "type": "f5",
+    "named": false
+  },
+  {
+    "type": "f6",
+    "named": false
+  },
+  {
+    "type": "f7",
+    "named": false
+  },
+  {
+    "type": "f8",
+    "named": false
+  },
+  {
+    "type": "f9",
+    "named": false
+  },
+  {
+    "type": "fast",
+    "named": false
+  },
+  {
+    "type": "fn",
+    "named": false
+  },
+  {
+    "type": "home",
+    "named": false
+  },
+  {
+    "type": "hyper",
+    "named": false
+  },
+  {
+    "type": "illumination_down",
+    "named": false
+  },
+  {
+    "type": "illumination_up",
+    "named": false
+  },
+  {
+    "type": "insert",
+    "named": false
   },
   {
     "type": "lalt",
     "named": false
   },
   {
+    "type": "lcmd",
+    "named": false
+  },
+  {
     "type": "lctrl",
+    "named": false
+  },
+  {
+    "type": "left",
     "named": false
   },
   {
@@ -296,16 +485,92 @@
     "named": false
   },
   {
-    "type": "name",
+    "type": "meh",
+    "named": false
+  },
+  {
+    "type": "mode",
     "named": true
+  },
+  {
+    "type": "mute",
+    "named": false
+  },
+  {
+    "type": "next",
+    "named": false
+  },
+  {
+    "type": "pagedown",
+    "named": false
+  },
+  {
+    "type": "pageup",
+    "named": false
+  },
+  {
+    "type": "play",
+    "named": false
+  },
+  {
+    "type": "previous",
+    "named": false
+  },
+  {
+    "type": "ralt",
+    "named": false
+  },
+  {
+    "type": "rcmd",
+    "named": false
+  },
+  {
+    "type": "rctrl",
+    "named": false
+  },
+  {
+    "type": "return",
+    "named": false
+  },
+  {
+    "type": "rewind",
+    "named": false
+  },
+  {
+    "type": "right",
+    "named": false
+  },
+  {
+    "type": "rshift",
+    "named": false
   },
   {
     "type": "shift",
     "named": false
   },
   {
+    "type": "sound_down",
+    "named": false
+  },
+  {
+    "type": "sound_up",
+    "named": false
+  },
+  {
+    "type": "space",
+    "named": false
+  },
+  {
     "type": "string",
     "named": true
+  },
+  {
+    "type": "tab",
+    "named": false
+  },
+  {
+    "type": "up",
+    "named": false
   },
   {
     "type": "~",
