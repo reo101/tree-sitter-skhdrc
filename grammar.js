@@ -115,10 +115,10 @@ module.exports = grammar({
       $.action
     ),
 
-    modes: $ => repeat1(seq(
+    modes: $ => seq(
       $.mode,
-      optional(",")
-    )),
+      repeat(seq(",", $.mode)),
+    ),
 
     mode: $ => /\w+/,
 
