@@ -178,5 +178,3 @@ module.exports = grammar({
     modifier_keyword: $ => choice(...MODIFIERS),
   }
 });
-
-// vim: set shiftwidth=2:
